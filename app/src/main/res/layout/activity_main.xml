@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AndroidERestaurant.AppBarOverlay">
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/entreeButton"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginEnd="131dp"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="@color/gray"
+            android:text="Entrées"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/platButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/dessertButton"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginEnd="131dp"
+            android:layout_marginBottom="250dp"
+            android:backgroundTint="@color/gray"
+            android:text="Desserts"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/platButton"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginEnd="131dp"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="@color/gray"
+            android:text="Plats"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/dessertButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="408dp"
+                android:layout_height="203dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/scr_20230130_lhs"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
