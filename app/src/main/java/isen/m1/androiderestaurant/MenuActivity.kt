@@ -40,7 +40,7 @@ class MenuActivity : AppCompatActivity() {
 
 		makeRequest()
 
-		showDatas()
+		//showDatas()
 	}
 
 
@@ -74,7 +74,7 @@ class MenuActivity : AppCompatActivity() {
 
 	private fun showDatas(category: isen.m1.androiderestaurant.network.Category) {
 		binding.recyclerView.layoutManager = LinearLayoutManager(this)
-		binding.recyclerView.adapter = CustomAdapter(listOf("1","2","3")) {
+		binding.recyclerView.adapter = CustomAdapter(category.items) {position ->
 			val Intent = Intent(this, DetailActivity::class.java)
 			startActivity(Intent)
 		}
@@ -89,10 +89,10 @@ class MenuActivity : AppCompatActivity() {
 	}
 
 	private fun categoryFilterKey(): String {
-		when(currentCategory) {
-			Category.STARTER -> "entrées"
-			Category.MAIN -> "plats"
-			Category.DESSERT -> "desserts"
+		return when(currentCategory) {
+			Category.STARTER -> "Entrées"
+			Category.MAIN -> "Plats"
+			Category.DESSERT -> "Desserts"
 		}
 	}
 

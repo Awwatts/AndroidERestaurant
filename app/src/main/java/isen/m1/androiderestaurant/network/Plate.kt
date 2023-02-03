@@ -5,9 +5,9 @@ import java.io.Serializable
 
 class Plate (
 	@SerializedName("name_fr") val name: String,
-	@SerializedName("price") val price: List<Price>,
+	@SerializedName("prices") val price: List<Price>,
 	@SerializedName("ingredients") val ingerdients: List<Ingredient>,
-	@SerializedName("image") val image: List<String>
+	@SerializedName("images") val image: List<String>
 
 
 ): Serializable

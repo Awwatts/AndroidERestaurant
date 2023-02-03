@@ -22,27 +22,18 @@ class HomeActivity : AppCompatActivity() {
 
 	private fun buttonListenner() {
 		binding.entreeButton.setOnClickListener {
-			Log.d("button", "click sur button entree")
 			Toast.makeText(this, "entrée", Toast.LENGTH_SHORT).show()
-			val intent = Intent(this, MenuActivity::class.java)
-			startActivity(intent)
 			showCategory(isen.m1.androiderestaurant.Category.STARTER)
-
-
-
 		}
 		binding.platButton.setOnClickListener {
-			Log.d("button", "click sur button plats")
+			//Log.d("button", "click sur button plats")
 			Toast.makeText(this, "Plat", Toast.LENGTH_SHORT).show()
-			val intent = Intent(this, MenuActivity::class.java)
-			startActivity(intent)
+			/*val intent = Intent(this, MenuActivity::class.java)
+			startActivity(intent)*/
 			showCategory(isen.m1.androiderestaurant.Category.MAIN)
 		}
 		binding.dessertButton.setOnClickListener {
-			Log.d("button", "click sur button dessert")
 			Toast.makeText(this, "Dessert", Toast.LENGTH_SHORT).show()
-			val intent = Intent(this, MenuActivity::class.java)
-			startActivity(intent)
 			showCategory(isen.m1.androiderestaurant.Category.DESSERT)
 		}
 	}
