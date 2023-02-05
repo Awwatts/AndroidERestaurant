@@ -12,7 +12,7 @@ import isen.m1.androiderestaurant.databinding.CellCustomBinding
 import isen.m1.androiderestaurant.network.Plate
 
 
-class CustomAdapter(val items: List<Plate>, val clickListenner: (Int) -> Unit):RecyclerView.Adapter<CustomAdapter.CellViewHolder>() {
+class CustomAdapter(val items: List<Plate>, val clickListenner: (Plate) -> Unit):RecyclerView.Adapter<CustomAdapter.CellViewHolder>() {
 
 	class CellViewHolder(binding: CellCustomBinding):RecyclerView.ViewHolder(binding.root){
 		val textView: TextView = binding.itemName
@@ -31,7 +31,7 @@ class CustomAdapter(val items: List<Plate>, val clickListenner: (Int) -> Unit):R
 		val ItemsViewModel = items[position]
 
 		holder.textView.text = ItemsViewModel.name
-		holder.price.text = ItemsViewModel.price[0].price
+		holder.price.text = ItemsViewModel.price[0].price + "€"
 
 		if(ItemsViewModel.image[0] != "")
 		{
@@ -39,7 +39,7 @@ class CustomAdapter(val items: List<Plate>, val clickListenner: (Int) -> Unit):R
 		}
 		holder.root.setOnClickListener {
 			Log.d("button", "click sur un $position")
-			clickListenner(position)
+			clickListenner(items[position])
 		}
 
 	}
