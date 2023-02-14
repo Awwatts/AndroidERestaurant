@@ -17,6 +17,7 @@ import java.io.Serializable
 
 class CustomAdapter(val items: List<Plate>, val clickListenner: (Plate) -> Unit):RecyclerView.Adapter<CustomAdapter.CellViewHolder>() {
 
+
 	class CellViewHolder(binding: CellCustomBinding):RecyclerView.ViewHolder(binding.root){
 		val textView: TextView = binding.itemName
 		val imageView: ImageView = binding.imageCell
@@ -48,7 +49,7 @@ class CustomAdapter(val items: List<Plate>, val clickListenner: (Plate) -> Unit)
 		holder.root.setOnClickListener {
 			Log.d("button", "click sur un $position")
 			clickListenner(items[position])
-			val intent = Intent(holder.imageView.context, DetailActivity::class.java)
+			val intent = Intent(holder.imageView.context, DetailActivity()::class.java)
 			intent.putExtra("name", items[position].name)
 			intent.putExtra("ingredients", items[position].ingerdients as Serializable)
 			intent.putExtra("image_id", items[position].image[0])

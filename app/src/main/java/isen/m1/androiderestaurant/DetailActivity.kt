@@ -3,12 +3,13 @@ package isen.m1.androiderestaurant
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import isen.m1.androiderestaurant.databinding.ActivityDetailBinding
 import isen.m1.androiderestaurant.network.Ingredient
+import java.io.File
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity() : AppCompatActivity() {
 	private lateinit var binding: ActivityDetailBinding
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -36,7 +37,27 @@ class DetailActivity : AppCompatActivity() {
 
 		binding.addCart.text = "Add for " + intent.getStringExtra("price") + "€"
 
+		val price = intent.getStringExtra("price").toString().toDouble()
+		val name = intent.getStringExtra("name").toString()
 
+		binding.addCart.setOnClickListener {
+			//Créer un fichier json, si il existe déja on ajoute un item
+			var cart = Cart()
+
+			// Ajouter un article
+			val item = CartItem(name, price, 1)
+			cart.addItem(item)
+
+			var cartJson = Gson().toJson(cart)
+			val file = File(this.filesDir, "cart.json")
+			file.writeText(cartJson)
+
+			// Lire le fichier
+			cartJson = file.readText()
+			val cart2 = Gson().fromJson(cartJson, Cart::class.java)
+			Log.d("cart", cart2.toString())
+
+		}
 	}
 
 

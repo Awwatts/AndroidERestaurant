@@ -38,7 +38,12 @@ class MenuActivity : AppCompatActivity() {
 
 		supportActionBar?.title = categoryName()
 
+		//Créer un fichier json, si il existe déja on ajoute un item
+
+
 		makeRequest()
+
+
 
 		//showDatas()
 	}
