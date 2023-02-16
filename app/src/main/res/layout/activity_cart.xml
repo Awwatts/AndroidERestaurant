@@ -5,7 +5,7 @@
 		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:context=".CartActivity">
+		tools:context=".activity.CartActivity">
 
 	<TextView
 			android:text="Panier"
@@ -15,10 +15,10 @@
 			android:layout_marginTop="32dp" android:layout_marginEnd="32dp" app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"/>
 	<androidx.recyclerview.widget.RecyclerView
-			android:layout_width="284dp"
-			android:layout_height="357dp"
-			android:id="@+id/listCart" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
-			android:layout_marginEnd="32dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="32dp"
+			android:layout_width="327dp"
+			android:layout_height="355dp"
+			android:id="@+id/listCart" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="32dp"
 			app:layout_constraintTop_toBottomOf="@+id/CartTitle"
 			app:layout_constraintHorizontal_bias="0.492"/>
 
