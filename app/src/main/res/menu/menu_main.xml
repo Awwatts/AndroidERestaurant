@@ -6,4 +6,8 @@
 		  android:title="@string/action_settings"
 		  android:orderInCategory="100"
 		  app:showAsAction="never"/>
+	<item android:id="@+id/cart_icon"
+		  android:icon="@drawable/ic_cart"
+		  android:title="Panier"
+		  app:showAsAction="always"/>
 </menu>

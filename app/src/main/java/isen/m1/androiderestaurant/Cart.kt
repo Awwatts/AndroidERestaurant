@@ -1,26 +1,24 @@
 package isen.m1.androiderestaurant
 
-class Cart {
-	private val items = mutableListOf<CartItem>()
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
+class Cart () : Serializable {
+	private val items: MutableList<CartItem> = mutableListOf()
 
 	fun addItem(item: CartItem) {
-		val existingItem = items.find { it.name == item.name }
-		if (existingItem != null) {
-			existingItem.quantity += item.quantity
-		} else {
-			items.add(item)
-		}
+		items.add(item)
 	}
 
 	fun removeItem(item: CartItem) {
 		items.remove(item)
 	}
 
-	fun getTotalPrice(): Double {
-		return items.sumOf { it.price * it.quantity }
+	fun clear() {
+		items.clear()
 	}
 
 	fun getItems(): List<CartItem> {
-		return items.toList()
+		return items
 	}
 }

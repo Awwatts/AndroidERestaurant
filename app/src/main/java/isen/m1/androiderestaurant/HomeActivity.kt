@@ -12,32 +12,34 @@ class HomeActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityMainBinding
 
+	private val cart = Cart()
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		buttonListenner()
+		buttonListenner(cart)
 
 
 	}
 
-	private fun buttonListenner() {
+	private fun buttonListenner(cart: Cart) {
 		binding.entreeButton.setOnClickListener {
 			Toast.makeText(this, "entrée", Toast.LENGTH_SHORT).show()
-			showCategory(isen.m1.androiderestaurant.Category.STARTER)
+			showCategory(isen.m1.androiderestaurant.Category.STARTER, cart)
 		}
 		binding.platButton.setOnClickListener {
 			//Log.d("button", "click sur button plats")
 			Toast.makeText(this, "Plat", Toast.LENGTH_SHORT).show()
 			/*val intent = Intent(this, MenuActivity::class.java)
 			startActivity(intent)*/
-			showCategory(isen.m1.androiderestaurant.Category.MAIN)
+			showCategory(isen.m1.androiderestaurant.Category.MAIN, cart)
 		}
 		binding.dessertButton.setOnClickListener {
 			Toast.makeText(this, "Dessert", Toast.LENGTH_SHORT).show()
-			showCategory(isen.m1.androiderestaurant.Category.DESSERT)
+			showCategory(isen.m1.androiderestaurant.Category.DESSERT, cart)
 		}
 	}
 
@@ -61,9 +63,11 @@ class HomeActivity : AppCompatActivity() {
 		super.onDestroy()
 	}
 
-	private fun showCategory(category:Category) {
+	private fun showCategory(category:Category, cart: Cart){
 		val intent = Intent(this, MenuActivity::class.java)
 		intent.putExtra(MenuActivity.extraKey, category)
+		intent.putExtra("cart", cart)
 		startActivity(intent)
 	}
 }
+

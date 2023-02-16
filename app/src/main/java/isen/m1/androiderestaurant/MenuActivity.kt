@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request.Method
 import com.android.volley.toolbox.JsonObjectRequest
@@ -39,9 +41,9 @@ class MenuActivity : AppCompatActivity() {
 		supportActionBar?.title = categoryName()
 
 		//Créer un fichier json, si il existe déja on ajoute un item
+		val cart = intent.getSerializableExtra("cart") as Cart
 
-
-		makeRequest()
+		makeRequest(cart)
 
 
 
@@ -57,7 +59,7 @@ class MenuActivity : AppCompatActivity() {
 		}
 	}
 
-	private fun makeRequest() {
+	private fun makeRequest(cart: Cart) {
 		val queue = Volley.newRequestQueue(this)
 		val params = JSONObject()
 		params.put(NetworkConstants.idShopKey, 1)
@@ -67,7 +69,7 @@ class MenuActivity : AppCompatActivity() {
 			params,
 			{ response ->
 				Log.d("request", response.toString(2))
-				ParseData(response.toString())
+				ParseData(response.toString(), cart)
 			},
 			{ error ->
 				Log.e("error", error.toString())
@@ -77,20 +79,21 @@ class MenuActivity : AppCompatActivity() {
 		//showDatas()
 	}
 
-	private fun showDatas(category: isen.m1.androiderestaurant.network.Category) {
+	private fun showDatas(category: isen.m1.androiderestaurant.network.Category, cart: Cart) {
 		binding.recyclerView.layoutManager = LinearLayoutManager(this)
 		binding.recyclerView.adapter = CustomAdapter(category.items) {position ->
 			val Intent = Intent(this, DetailActivity::class.java)
+			intent.putExtra("cart", cart)
 			startActivity(Intent)
 		}
 
 	}
 
-	private fun ParseData(data: String) {
+	private fun ParseData(data: String, cart: Cart) {
 		val result = GsonBuilder().create().fromJson(data, MenuResult::class.java)
 		val category = result.data.first{ it.name == categoryFilterKey()}
 		//Log.d("request", "parsing")
-		showDatas(category)
+		showDatas(category, cart)
 	}
 
 	private fun categoryFilterKey(): String {
@@ -100,6 +103,24 @@ class MenuActivity : AppCompatActivity() {
 			Category.DESSERT -> "Desserts"
 		}
 	}
+
+	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+		menuInflater.inflate(R.menu.menu_main, menu)
+		return true
+	}
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		return when (item.itemId) {
+			R.id.cart_icon -> {
+				// Rediriger vers le panier de l'utilisateur
+				val Intent = Intent(this, CartActivity::class.java)
+				//intent.putExtra("cart", cart)
+				startActivity(Intent)
+				true
+			}
+			else -> super.onOptionsItemSelected(item)
+		}
+	}
+
 
 
 
